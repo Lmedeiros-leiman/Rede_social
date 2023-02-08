@@ -1,0 +1,9 @@
+.logo{
+    color: #FFB347;
+}
+.logo:link{
+    color: #FFB347;
+}
+.logo:any-link{
+    color: #FFB347;
+}

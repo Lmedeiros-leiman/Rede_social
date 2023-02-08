@@ -1,0 +1,52 @@
+.container{
+    width: 100%;
+    position: relative;
+    display: flex;
+}
+.cetralizado-flex{
+    display: flex;
+    justify-content: center;
+}
+.esquerda-flex{
+    display: flex;
+    justify-content: left;
+}
+.direita-flex{
+    display: flex;
+    justify-content: right;
+}
+.manterdistancia-flex{
+    display: flex;
+    justify-content: space-between;
+}
+.distanciarigual-flex{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.redondo{
+    border-radius: 50%;
+}
+
+
+.alinhado-conteudo-centro{
+    align-content: center;
+}
+
+
+
+
+.letra-pequena{
+    font-size: small;
+}
+.letra-media{
+    font-size: medium;
+}
+.letra-grande{
+    font-size: large;
+}
+
+
+
+
+

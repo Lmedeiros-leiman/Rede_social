@@ -10,15 +10,16 @@ function islogged(){
 function impedirnaologado() {
     if (!isset($_SESSION["IDUSUARIO"])) {
         header("location: index.php");
+        exit();
     }
     return true;
 }
-
 function impedirusuario() {
     if ($_SESSION["nivelconta"] === "usuario") {
         return true;
     }
     header("location: index.php");
+    exit();
     return false;
 }
 
@@ -27,5 +28,6 @@ function checaradministrador() {
         return true;
     }
     header("location: index.php");
+    exit();
     return false;
 }
