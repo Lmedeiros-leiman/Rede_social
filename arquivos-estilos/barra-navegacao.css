@@ -7,3 +7,6 @@
 .logo:any-link{
     color: #FFB347;
 }
+nav picture{
+    border: 1px solid black;
+}

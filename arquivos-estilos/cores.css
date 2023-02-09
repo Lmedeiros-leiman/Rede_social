@@ -1,18 +1,21 @@
-.fundo-preto{ background-color: black; } .letra-preto{ background-color: black; }
-.fundo-branco{ background-color: white; } .letra-branco{ background-color: white; }
-.fundo-cinza{ background-color: grey; } .letra-cinza{ background-color: grey; }
-.fundo-cinzaescuro{ background-color: dimgray; } .letra-cinzaescuro{ background-color: dimgray; }
-.fundo-vermelho{ background-color: red; } .letra-vermelho{ background-color: red; }
-.fundo-verde{ background-color: green; } .letra-verde{ background-color: green; }
-.fundo-azul{ background-color: blue; } .letra-azul{ background-color: blue; }
-.fundo-azulreal{ background-color: royalblue; } .letra-azulreal{ background-color: royalblue; }
-.fundo-roxo{ background-color: rebeccapurple; } .letra-roxo{ background-color: rebeccapurple; }
-.fundo-laranja{ background-color: orange; } .letra-laranja{ background-color: orange; }
-.fundo-laranja-escuro{ background-color: orangered; } .letra-laranja-escuro{ background-color: orangered; }
+.fundo-preto{ background-color: black; } .letra-preto{ color: black; }
+.fundo-branco{ background-color: white; } .letra-branco{ color: white; }
+.fundo-cinza{ background-color: grey; } .letra-cinza{ color: grey; }
+.fundo-cinzaescuro{ background-color: dimgray; } .letra-cinzaescuro{ color: dimgray; }
+.fundo-vermelho{ background-color: red; } .letra-vermelho{ color: red; }
+.fundo-verde{ background-color: green; } .letra-verde{ color: green; }
+.fundo-azul{ background-color: blue; } .letra-azul{ color: blue; }
+.fundo-azulreal{ background-color: royalblue; } .letra-azulreal{ color: royalblue; }
+.fundo-roxo{ background-color: rebeccapurple; } .letra-roxo{ color: rebeccapurple; }
+.fundo-laranja{ background-color: orange; } .letra-laranja{ color: orange; }
+.fundo-laranja-escuro{ background-color: orangered; } .letra-laranja-escuro{ color: orangered; }
 
 
 
 .fundo-cor-principal{ background-color: #ec5050 }  .letra-cor-principal{ color: #ec5050}
 .fundo-cor-segundaria{ background-color:#FFB347;} .letra-cor-segundaria{ color: #FFB347;}
 
-
+:root{
+    --cor-principal: #ec5050;
+    --cor-segundaria: #FFB347;
+}

@@ -1,6 +1,6 @@
 <?php
-include "essenciais/iniciar.php";
+// essa secão pode vir a se tornar algum tipo de controle de conexao??
+header("location: paginas/ ");
+exit();
 
-// Chama a barra de ferramentas
-include "partes-visuais/barra-navegacao.php";
 

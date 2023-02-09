@@ -1,7 +1,9 @@
 <?php
-    session_start();
-function islogged(){
-    if ($_SESSION["IDUSUARIO"]) {
+session_start();
+$_SESSION["NOMEWEBSITE"] = "Website";
+function islogged(): bool
+{
+    if (isset($_SESSION["IDUSUARIO"])) {
         return true;
     } else {
         return false;

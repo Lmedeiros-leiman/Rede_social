@@ -1,27 +1,46 @@
-.container{
+.container, container-total{
     width: 100%;
     position: relative;
     display: flex;
 }
-.cetralizado-flex{
+.container-mobile{
+    max-width: 600px;
+    width: 600px;
+    position: relative;
+    display: flex;
+}
+
+
+
+
+
+.centralizado-flex, .cetralizado-flex{
     display: flex;
     justify-content: center;
+    align-items: center;
 }
 .esquerda-flex{
     display: flex;
     justify-content: left;
+    align-items: center;
 }
 .direita-flex{
     display: flex;
     justify-content: right;
+    align-items: center;
 }
 .manterdistancia-flex{
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
 .distanciarigual-flex{
     display: flex;
     justify-content: space-evenly;
+    align-items: center;
+}
+.manter-na-linha{
+    display: inline;
 }
 
 .redondo{
@@ -45,7 +64,9 @@
 .letra-grande{
     font-size: large;
 }
-
+.letra-grande-extra{
+    font-size: x-large;
+}
 
 
 
