@@ -9,10 +9,64 @@
     position: relative;
     display: flex;
 }
+.container-mobile-longo-curto{
+
+    display: flex;
+    flex-direction: column;
+    margin-left: 1rem;
+}
+.formulario{
+    display: flex;
+    flex-direction: column;
+}
+.formulario form > * {
+    display: flex;
+    flex-direction: column;
+    font-weight: bolder;
+}
+.botao-formulario{
+    flex-direction: row !important;
+    width: available;
+}
+.botao-formulario > * {
+    cursor: pointer;
+    width: calc(100% / 2);
+}
+/*
+    Esses componentes devem ser utilizados no container PAI, são universais porem podem resultar alguns efeitos
+    não desejados.
+ */
+.lateral-mobile-cima
+{
+    flex-direction: initial;
+}
+.lateral-mobile-baixo{
+    flex-direction: initial;
+}
+@media only screen and (max-width: 800px) {
+    .container-mobile-longo-curto{
+        max-width: 600px;
+        flex-direction: row;
+        margin-bottom: 1rem;
+    }
+    .lateral-mobile-cima{
+        display: flex;
+        flex-direction: column-reverse;
+
+    }
+    .lateral-mobile-baixo{
+        display: flex;
+        flex-direction: column;
+    }
+
+}
 
 
-
-
+/*
+    A partir daqui, serão apresentadas classes para a visualização do conteundo.
+    por nunca me morder, todas elas utilizarão flex-box.
+    exeções serão exaltadas.
+ */
 
 .centralizado-flex, .cetralizado-flex{
     display: flex;
@@ -43,6 +97,11 @@
     display: inline;
 }
 
+
+
+.bordas-arredondadas{
+    border-radius: 10px;
+}
 .redondo{
     border-radius: 50%;
 }
@@ -53,21 +112,17 @@
 }
 
 
+/*
 
+ */
 
-.letra-pequena{
-    font-size: small;
-}
-.letra-media{
-    font-size: medium;
-}
-.letra-grande{
-    font-size: large;
-}
-.letra-grande-extra{
-    font-size: x-large;
-}
-
+.separar-baixo {padding: 1rem;}
+.separar-cima {padding: 1rem 0 0 0;}
+.separar-esquerda {padding: 0 0 0 1rem ;}
+.separar-direira {padding: 0 1rem 0 0;}
+.separar-cima-baixo {padding: 1rem 0 1rem 0;}
+.separar-esquerda-direita {padding: 0 1rem 0 1rem;}
+.separar-tudo{padding: 1rem;}
 
 
 

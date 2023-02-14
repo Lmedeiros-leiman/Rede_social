@@ -1,5 +1,5 @@
-.fundo-preto{ background-color: black; } .letra-preto{ color: black; }
-.fundo-branco{ background-color: white; } .letra-branco{ color: white; }
+.fundo-preto{ background-color: black; } .letra-preto{ color: black; } .fundo-preto-transparente {background-color: rgba(0, 0, 0, 0.65)}
+.fundo-branco{ background-color: white; } .letra-branco{ color: white; } .fundo-branco-transparente {background-color: rgba(255, 255, 255, 0.65)}
 .fundo-cinza{ background-color: grey; } .letra-cinza{ color: grey; }
 .fundo-cinzaescuro{ background-color: dimgray; } .letra-cinzaescuro{ color: dimgray; }
 .fundo-vermelho{ background-color: red; } .letra-vermelho{ color: red; }
@@ -19,3 +19,26 @@
     --cor-principal: #ec5050;
     --cor-segundaria: #FFB347;
 }
+
+/*
+    A partir daqui serão definidos tamanhos de letras.
+ */
+
+.letra-pequena{
+    font-size: small;
+}
+.letra-media{
+    font-size: medium;
+}
+.letra-grande{
+    font-size: large;
+}
+.letra-grande-extra{
+    font-size: x-large;
+}
+
+/*
+    A partir daqui, serão definidos FONTES de letras
+    pensando se vale a pena esse serviço ou se é melhor indexar as fontes em outras classes por padrão,
+    vamos ver como vai ficar no futuro
+ */

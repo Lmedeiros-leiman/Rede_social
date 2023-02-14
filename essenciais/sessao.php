@@ -1,6 +1,6 @@
 <?php
+
 session_start();
-$_SESSION["NOMEWEBSITE"] = "Website";
 function islogged(): bool
 {
     if (isset($_SESSION["IDUSUARIO"])) {
@@ -21,7 +21,7 @@ function impedirusuario() {
         return true;
     }
     header("location: index.php");
-    exit();
+    exit("invalido");
     return false;
 }
 
@@ -30,6 +30,6 @@ function checaradministrador() {
         return true;
     }
     header("location: index.php");
-    exit();
+    exit("invalido");
     return false;
 }

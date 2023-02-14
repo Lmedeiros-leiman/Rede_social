@@ -36,7 +36,7 @@
 
 
                 </section>
-                <section style="align-items: flex-start">
+                <section class="centralizado-flex" style="align-items: flex-start">
                     <picture style="margin-left: 1rem; width: 40px; height: 40px;" class="redondo" >
                         <img src="/banco-dados/imagens/<?php echo islogged() ?  $_SESSION["IMAGEMPERFIL_NOME"] : "avatar_padrao.png"  ?>">
                     </picture>
