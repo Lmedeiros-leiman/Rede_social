@@ -1,4 +1,5 @@
 <?php
+require "relato_erro.php";
 class Bancodados
 {
     private $usuario = null;
@@ -35,8 +36,8 @@ class Bancodados
 
     public function abrir() {
         try {
-            $this->conn = new PDO($this->host, $this->usuario, $this->senha, $this->banco);
-            return $this->conn;
+            $this->conn = new PDO($this->dadosunidos, $this->usuario, $this->senha, $this->opcoes);
+            return true;
 
         } catch ( PDOException $erro) {
 
@@ -45,24 +46,11 @@ class Bancodados
                     Arquivo de relatório criado..
                     </div> ";
 
-
-            $data = date("d-m-Y");
-            $horario = date("H:i:s");
-            $numero = 1;
-
-            $nome_arquivo = "/relatorios_erro/Relatório_Erro_BancoDados_{$data}_{$numero}.txt";
-            while (file_exists($nome_arquivo)) {
-                $numero++;
-                $nome_arquivo = "/relatorios_erro/Relatório_Erro_BancoDados_{$data}_{$numero}.txt";
-            }
-
-            $mensagem_erro = " {$data} - {$horario} -> um problema connectando com o banco de dados: \n{$erro->getMessage()}\n\n";
-            $caminhoerro = __DIR__.$nome_arquivo;
-            file_put_contents($caminhoerro, $mensagem_erro, FILE_APPEND);
+          $mensagem_erro = " um problema connectando com o banco de dados: \n{$erro->getMessage()}";
+          $relatorio->adicionar_erro($mensagem_erro);
         }
         return false;
     }
-
     public function fechar() {
 
         try {
@@ -75,9 +63,67 @@ class Bancodados
         return false;
     }
 
+    public function verificar_registro($nomes = array(), $valores = array(), $buscarsenha = false ) {
+        $senha_usuario = null;
+        $email_usuario = null;
+        try{
+            if ($this->conn === null) {
+                throw new Exception("Abra a conexao para fazer a query.");
+            }
+            if (!is_array($nomes) or !is_array($valores)){
+                throw new Exception("Um dos valores não é um array.");
+            }
+            if (count($nomes) != count($valores)) {
+                throw new Exception("As entradas possuem valores de tamanho diferente, garanta que tenham a mesma quantidade de itens em cada vetor.");
+            }
+            if (count($nomes) < 1 or count($valores) < 1 ) {
+                throw new Exception("Um dos valores esta vazio, verifique a entrada de dados.");
+            }
+            for ($i = 0; $i < count($nomes); $i++) {
+                if ($nomes[$i] == "senha_usuario"){
+                    $senha_usuario = $valores[$i];
+                }
+                if ($nomes[$i] == "email_usuario"){
+                    $email_usuario = $valores[$i];
+                }
+            }
 
-    public function checar_query($nomes = array(), $valores = array() ) {
+        } catch (Exception $erro) {
+            return false;
+            exit();
+        }
+
         try {
+          $pedido = "SELECT nome_usuario FROM usuarios WHERE nome_usuario = ? OR email_usuario = ?  ";
+          $preparacao = $this->conn->prepare($pedido);
+          $preparacao->bindValue(1, $valores[0]);
+          $preparacao->bindValue(2, $email_usuario);
+
+          if ($buscarsenha) {
+            $pedido = "SELECT nome_usuario FROM usuarios WHERE nome_usuario = ? AND senha_usuario = ? OR email_usuario = ? AND senha_usuario = ? ";
+            $preparacao = $this->conn->prepare($pedido);
+            $preparacao->bindValue(1, $valores[0]);
+            $preparacao->bindValue(2, $senha_usuario);
+            $preparacao->bindValue(3, $email_usuario);
+            $preparacao->bindValue(4, $senha_usuario);
+          }
+
+
+          $preparacao->execute();
+          $dados = $preparacao->fetchAll();
+
+
+          if ($dados){
+            return $dados;
+          }
+          return false;
+        } catch (Exception $erro) {
+            return false;
+            exit();
+        }
+    }
+    public function criar_registro($nomes = array(), $valores = array() ){
+        try{
             if ($this->conn === null) {
                 throw new Exception("Abra a conexao para fazer a query.");
             }
@@ -96,24 +142,46 @@ class Bancodados
                 throw new Exception("As entradas possuem valores de tamanho diferente, garanta que tenham a mesma quantidade de itens em cada vetor.");
             }
 
-            $pedido = "SELECT * FROM usuarios WHERE ";
-            $pedido .= implode(" = ? AND ", $nomes) . " = ?";
 
-            $preparacao = $conn->prepare($pedido);
+        } catch (Exception $erro) {
+            return false;
+            exit($erro);
+        }
 
-            for ($i = 0; $i < count($valores); $i++) {
-                $preparacao->bindValue($i + 1, $valores[$i]);
-            }
-            $preparacao->execute();
-            return $preparacao->fetchAll();
+        try {
+
+            $nome = implode(",", $nomes);
+            $valor = implode(', ', array_fill(0, count($valores), '?'));
+
+            $pedido = "INSERT INTO usuarios ( $nome ) VALUES ( $valor )";
+            $preparacao = $this->conn->prepare($pedido);
+            $preparacao->execute($valores);
 
             return true;
-        } catch (Exception $e) {
-            echo "Encontrado um erro ao checar a querry: <strong style='color: red'> {$e->getMessage()} </strong>";
+
+
+        } catch (Exception $erro) {
+            return false;
+            exit();
+
         }
         return false;
-
     }
-
+    public function pegar_dados_usuario_id($nomeusuario) {
+        $pedido = "SELECT
+            nome_usuario,
+            apelidado_usuario,
+            foto_perfil_usuario,
+            email_usuario,
+            telefone_usuario,
+            data_criacao_usuario,
+            data_ultimo_login_usuario
+            
+        FROM usuarios WHERE `nome_usuario` = :nome_usuario";
+        $preparacao = $this->conn->prepare($pedido);
+        $preparacao->bindValue(':nome_usuario', $nomeusuario);
+        $preparacao->execute();
+        return $preparacao->fetchAll();
+    }
 }
 $banco = new Bancodados();
