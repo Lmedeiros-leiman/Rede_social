@@ -1,0 +1,6 @@
+ 20-02-2023 - 03:27:18 -> um problema connectando com o banco de dados: 
+SQLSTATE[HY000] [2002] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente
+
+ 20-02-2023 - 03:27:51 -> um problema connectando com o banco de dados: 
+SQLSTATE[HY000] [2002] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente
+
